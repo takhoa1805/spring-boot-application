@@ -1,0 +1,17 @@
+# dev profile
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: root
+    password: psql
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+
