@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.dataobject.UserDO;
 import com.example.demo.services.UserService;
+import org.apache.logging.log4j.message.ObjectMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,8 @@ public class MainController {
     public UserDO getUserByUsername(@PathVariable String username) {
         logger.info("Hello world from get user by username api");
         logger.debug("username: {}", username);
-        return userService.getUserByUsername(username);
+        UserDO user = userService.getUserByUsername(username);
+        logger.info("User found: {}", user.getUsername());
+        return user;
     }
 }
