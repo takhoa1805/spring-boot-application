@@ -1,4 +1,4 @@
-package com.example.demo.dataobject;
+package com.example.demo.dataobject.database1;
 
 import jakarta.persistence.*;
 

@@ -1,10 +1,21 @@
 services:
-  database:
+  database1:
     image: postgres:17.0
-    container_name: database
+    container_name: database1
     environment:
       POSTGRES_USER: root
       POSTGRES_DB: test
       POSTGRES_PASSWORD: psql
     ports:
       - "5432:5432"
+  database2:
+    image: mysql:8.0
+    container_name: database2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: test
+      MYSQL_USER: hell
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"

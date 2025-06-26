@@ -9,9 +9,18 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/test
-    username: root
-    password: psql
+    database1:
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://localhost:5432/test
+      username: root
+      password: psql
+
+    database2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/test
+      username: root
+      password: rootpassword
+
 
   jpa:
     generate-ddl: true
