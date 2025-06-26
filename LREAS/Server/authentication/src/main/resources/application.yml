@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: authentication
+
+  profiles:
+    active: "dev"

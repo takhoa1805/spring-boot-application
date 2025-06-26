@@ -1,0 +1,81 @@
+.exit-popup {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .popup {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+        position: relative;
+    
+        .exit-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .message {
+            margin-top: 1rem;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .description {
+            color: gray;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .action-button {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            justify-content: flex-end;
+            margin-top: 20px;
+
+            button {
+                font-size: 1rem;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: all 0.1s ease-in-out;
+                outline: none;
+                font-family: inherit;
+                padding: 0.5rem 1rem;
+            }
+
+            .ok-button {
+                background-color: #C70000;
+                color: white;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .ok-button:hover {
+                background-color: #C70000;
+                transform: scale(1.07);
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+            }
+            .cancel-button {
+                background-color: #f5f5f5;
+                color: #333;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .cancel-button:hover {
+                background-color: #e0e0e0;
+                transform: scale(1.05);
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}

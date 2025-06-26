@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package com.lreas.grpc;
+
+service GrpcProfileService {
+  rpc getUserInfo (GetUserInfoGrpc) returns (UserInfoGrpc);
+}
+
+message GetUserInfoGrpc {
+  string userId = 1;
+}
+
+message UserInfoGrpc {
+  string avtPath = 1;
+  string userName = 2;
+  string birthday = 3;
+  string gender = 4;
+  string otherGender = 5;
+  string description = 6;
+  string email = 7;
+  string phone = 8;
+  string address = 9;
+  string institutionName = 10;
+  string invitationCode = 11;
+}

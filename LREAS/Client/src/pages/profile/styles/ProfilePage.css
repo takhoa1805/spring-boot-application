@@ -1,0 +1,520 @@
+.profile-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .profile-page-container {
+        display: flex;
+        width: 100%;
+        height: 91%;
+        overflow: hidden;
+
+        .container {
+            display: flex;
+            width: 100%;
+
+            .main-container {
+                flex: 1;
+                padding: 1rem;
+                -webkit-user-select: none; /* Safari */
+                -ms-user-select: none; /* IE 10 and IE 11 */
+                user-select: none; /* Standard syntax */
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                overflow-x: hidden;
+                overflow-y: auto;
+                align-items: center;
+
+                .info-frame {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+                    width: 60%;
+
+                    .title {
+                        font-size: 1.75rem;
+                    }
+
+                    .info {
+                        display: flex;
+                        padding: 1.5rem;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 1.5rem;
+                        border-radius: 0.625rem;
+                        border: 0.2px solid #000;
+
+                        .info-title {
+                            font-size: 1.375rem;
+                        }
+
+                        .note {
+                            font-size: 0.7rem;
+                            margin-top: -0.9rem;
+                            margin-bottom: -0.5rem;
+                        }
+
+                        .info-row {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 0.8rem;
+                            width: 100%;
+
+                            .field-title {
+                                font-size: 0.75rem;
+                            }
+
+                            .avatar-frame {
+                                display: flex;
+                                align-items: center;
+                                gap: 1.4375rem;
+
+                                .avatar-image {
+                                    width: 3.75rem;
+                                    height: 3.75rem;
+
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                        border-radius: 50%;
+                                    }
+                                }
+
+                                .edit-button {
+                                    background-color: #3F67FB;
+                                    position: relative;
+                                    cursor: pointer;
+                                    display: flex;
+                                    padding: 0.625rem 1.5625rem;
+                                    justify-content: center;
+                                    align-items: center;
+                                    gap: 0.625rem;
+                                    border-radius: 0.5rem;
+                                    width: 48%;
+                                    border: none;
+                                    transition: all 0.2s;
+
+                                    img {
+                                        width: 1rem;
+                                        height: 1rem;
+                                    }
+                
+                                    .text {
+                                        color: #FFF;
+                                    }
+
+                                    input {
+                                        display: none;
+                                    }
+                                }
+                                .edit-button:hover {
+                                    background-color: #0039cb;
+                                    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+                                }
+                                .edit-button:active {
+                                    background-color: #002984;
+                                    transform: scale(0.95);
+                                }
+                            }
+
+                            .input {
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                border-radius: 0.3125rem;
+                                background-color: #EFF2F5;
+                                position: relative;
+                                width: 100%;
+                                height: 2.5rem;
+                                cursor: text;
+
+                                .input-text {
+                                    color: black;
+                                    background-color: #EFF2F5;
+                                    letter-spacing: 0;
+                                    margin-left: 1rem;
+                                    margin-right: 1rem;
+                                    border: none;
+                                    outline: none;
+                                    text-align: left;
+                                    resize: none;
+                                    overflow: hidden;
+                                    line-height: 2.5;
+                                    height: 100%;
+                                    width: 100%;
+                                    box-sizing: border-box;
+                                }
+
+                                .input-datetime {
+                                    color: #000000e6;
+                                    background-color: #EFF2F5;
+                                    letter-spacing: 0;
+                                    line-height: normal;
+                                    margin-left: 1rem;
+                                    border: none;
+                                    outline: none;
+                                    text-align: left;
+                                    resize: none;
+                                    overflow: hidden;
+                                    line-height: 2.5;
+                                    height: 80%;
+                                    width: 100%;
+                                    padding-right: 1rem;
+                                    box-sizing: border-box;
+                                }
+                            }
+
+                            .password-input {
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                border-radius: 0.3125rem;
+                                background-color: #EFF2F5;
+                                width: 100%;
+                                height: 2.5rem;
+                                cursor: text;
+                                flex-direction: row;
+                                gap: 0.5rem;
+
+                                .input-text {
+                                    color: #000000e6;
+                                    background-color: #EFF2F5;
+                                    letter-spacing: 0;
+                                    margin-left: 1rem;
+                                    border: none;
+                                    outline: none;
+                                    text-align: left;
+                                    resize: none;
+                                    overflow: hidden;
+                                    line-height: 2.5;
+                                    height: 100%;
+                                    width: 100%;
+                                    box-sizing: border-box;
+                                }
+
+                                img {
+                                    width: 1.3rem;
+                                    height: 1.3rem;
+                                    margin-right: 0.5rem;
+                                    box-sizing: border-box;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            .description-input {
+                                width: 100%;
+                                min-height: 100px;
+                                border-radius: 0.625rem;
+                                position: relative;
+                                background-color: #EFF2F5;
+                                display: flex;
+                                outline: none;
+                                resize: none;
+                                border: none;
+                                box-sizing: border-box;
+                                padding: 1rem;
+                                font-style: inherit;
+                            }
+
+                            .limit-text {
+                                font-size: 0.65rem;
+                                color: black;
+                                font-style: italic;
+                                margin-top: -0.7rem;
+                                align-self: flex-end;
+                            }
+
+                            .status-text {
+                                color: red;
+                                font-style: italic;
+                                font-size: 0.8rem;
+                                margin-top: -0.8rem;
+                                margin-bottom: -0.8rem;
+                                opacity: 0;
+                            }
+                        }
+
+                        .gender {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 0.8rem;
+                            width: 100%;
+
+                            .field-title {
+                                font-size: 0.75rem;
+                            }
+
+                            .selection-zone {
+                                display: flex;
+                                align-items: center;
+                                width: 100%;
+                                justify-content: space-between;
+
+                                .option {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.75rem;
+
+                                    .text {
+                                        font-size: 1rem;
+                                    }
+
+                                    .checkbox {
+                                        width: 1.3rem;
+                                        height: 1.3rem;
+                                        border-radius: 6px;
+                                        border: 1px solid black;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        cursor: pointer;
+                                        transition: all 0.2s ease-in-out;
+                                        background-color: white;
+                                        box-shadow: none;
+                                        position: relative;
+
+                                        .checkmark {
+                                            position: absolute;
+                                            top: 7%;
+                                            width: 0.35rem;
+                                            aspect-ratio: 1/2;
+                                            border-bottom: 3px solid white;
+                                            border-right: 3px solid white;
+                                            transform: rotate(45deg);
+                                            transition: all 0.2s ease-in-out;
+                                        }
+                                    }
+                                    .checkbox-checked {
+                                        background-color: #3F67FB;
+                                        border: 1px solid #3F67FB;
+                                        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+                                    }
+
+                                    .other-input {
+                                        display: flex;
+                                        justify-content: flex-start;
+                                        align-items: center;
+                                        border-radius: 0.3125rem;
+                                        background-color: #EFF2F5;
+                                        position: relative;
+                                        height: 2rem;
+                                        cursor: text;
+        
+                                        .input-text {
+                                            color: #000000e6;
+                                            letter-spacing: 0;
+                                            line-height: normal;
+                                            margin-left: 1rem;
+                                            border: none;
+                                            outline: none;
+                                            text-align: left;
+                                            resize: none;
+                                            line-height: 2.5;
+                                            height: 80%;
+                                            width: 100%;
+                                            background-color: #EFF2F5;
+                                        }
+                                    }
+                                }
+                            }
+                            @media (max-width: 991px) {
+                                .selection-zone {
+                                    gap: 1rem;
+                                    display: grid;
+                                    grid-template-columns: repeat(auto-fill, minmax(1.4rem, 17rem));
+                                    width: 100%;
+                                }
+                            }
+                        }
+
+                        .action-buttons {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            width: 100%;
+                            gap: 1rem;
+                            justify-content: flex-end;
+
+                            .status-text {
+                                font-style: italic;
+                                color: green;
+                                opacity: 0;
+                            }
+            
+                            button {
+                                display: flex;
+                                padding: 0.6875rem;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 0.625rem;
+                                border-radius: 0.5rem;
+                                width: 18%;
+                                border: none;
+                                cursor: pointer;
+                                transition: all 0.2s;
+            
+                                img {
+                                    width: 1rem;
+                                    height: 1rem;
+                                }
+                            }
+                            @media (max-width: 991px) {
+                                button {
+                                    width: 30%;
+                                }
+                            }
+            
+                            .update-button {
+                                background-color: #3F67FB;
+            
+                                .text {
+                                    color: #FFF;
+                                }
+                            }
+                            .update-button:hover:not(:disabled) {
+                                background-color: #0039cb;
+                                box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+                            }
+                            .update-button:active:not(:disabled) {
+                                background-color: #002984;
+                                transform: scale(0.95);
+                            }
+
+                            .update-button:disabled {
+                                opacity: 0.5;
+                                cursor: default;
+                            }
+                        }
+                    }
+
+                    .action-buttons {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        width: 100%;
+                        justify-content: flex-end;
+                        gap: 0.8rem;
+
+                        .status-text {
+                            font-style: italic;
+                            color: green;
+                            opacity: 0;
+                            font-size: 0.8rem;
+                        }
+
+                        .loading {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 0.5rem;
+                            align-items: flex-end;
+                
+                            img {
+                                width: 1.1rem;
+                                height: 1.1rem;
+                                animation: spin 0.8s linear infinite;
+                            }
+                        }
+
+                        .button-group {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 0.8rem;
+                            width: 30%;
+
+                            button {
+                                display: flex;
+                                padding: 0.6875rem;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 0.625rem;
+                                border-radius: 0.5rem;
+                                width: 48%;
+                                border: none;
+                                cursor: pointer;
+                                transition: all 0.2s;
+            
+                                img {
+                                    width: 1rem;
+                                    height: 1rem;
+                                }
+                            }
+            
+                            .reset-button {
+                                background-color: #EFF2F5;
+            
+                                .text {
+                                    color: #000;
+                                }
+                            }
+                            .reset-button:hover {
+                                background-color: #f0f0f0;
+                                border-color: #aaa;
+                                box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+                            }
+                            .reset-button:active {
+                                background-color: #e0e0e0;
+                                border-color: #888;
+                                transform: scale(0.95);
+                            }
+            
+                            .save-button {
+                                background-color: #3F67FB;
+            
+                                .text {
+                                    color: #FFF;
+                                }
+                            }
+                            .save-button:hover {
+                                background-color: #0039cb;
+                                box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+                            }
+                            .save-button:active {
+                                background-color: #002984;
+                                transform: scale(0.95);
+                            }
+                        }
+                        @media (max-width: 991px) {
+                            .button-group {
+                                width: 50%;
+                            }
+                        }
+                    }
+                    @media (max-width: 991px) {
+                        .action-buttons {
+                            flex-direction: column-reverse;
+                            align-items: flex-end;
+                        }
+                    }
+                }
+                @media (max-width: 991px) {
+                    .info-frame {
+                        width: 95%;
+                    }
+                }
+            }
+            .main-container::-webkit-scrollbar {
+                width: 10px;
+                border-radius: 10px;
+                background-color: #e1ebf9;
+            }
+            .main-container::-webkit-scrollbar-thumb {
+                background-color: #a0a0a0;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            .main-container::-webkit-scrollbar-thumb:hover {
+                background-color: #888888;
+            }
+        }
+    }
+}
+input:-webkit-autofill, input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}

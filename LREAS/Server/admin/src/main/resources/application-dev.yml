@@ -1,0 +1,25 @@
+# dev profile
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  datasource:
+    url: jdbc:postgresql://lreas-database:5432/lreas
+    username: lreas
+    password: lreas
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+
+secret:
+  admin: 1ILGuygCmEM44lSsuUBJT7yAjwOC0vIV
+
+key:
+  admin: p96lO4ewSofzfYTvOJc1kKhP4Kfb32aJ
+
+server:
+  port: 2007

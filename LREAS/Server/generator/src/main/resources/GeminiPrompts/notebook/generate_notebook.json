@@ -1,0 +1,24 @@
+{
+    "contents": [{
+        "parts": [
+            {
+                "text": "%s"
+            }
+        ]
+    }],
+    "cachedContent": "%s",
+    "generationConfig": {
+        "response_mime_type": "application/json",
+        "response_schema": {
+            "type": "OBJECT",
+            "properties": {
+                "content": {
+                    "type": "STRING"
+                }
+            },
+            "required": [
+                "content"
+            ]
+        }
+    }
+}

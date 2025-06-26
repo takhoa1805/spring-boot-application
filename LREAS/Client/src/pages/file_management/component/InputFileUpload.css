@@ -1,0 +1,24 @@
+.upload-csv-button {
+    font-size: 1rem !important;
+    border-radius: 6px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.1s ease-in-out !important;
+    outline: none !important;
+    font-family: inherit !important;
+    padding: 0.5rem 1rem !important;
+    text-transform: capitalize !important;
+    background-color: #39B549 !important;
+    color: white !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1) !important;
+
+    img {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+.upload-csv-button:hover {
+    background-color: #2B9238 !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2) !important;
+}

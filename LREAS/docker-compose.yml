@@ -1,0 +1,354 @@
+#version: '3.8'
+
+name: lreas
+
+networks:
+  kong-net:
+    name: kong-net
+    driver: bridge
+  real-time-quiz-net:
+    name: real-time-quiz-net
+    driver: bridge
+
+services:
+  mongo:
+    image: mongo:8.0.4
+    container_name: mongo
+    restart: on-failure
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: lreas
+      MONGO_INITDB_ROOT_PASSWORD: lreas
+      MONGO_INITDB_DATABASE: lreas
+    command: mongod --port 27017
+    ports:
+      - "27017:27017"
+    networks:
+      - kong-net
+
+  minio:
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    container_name: minio
+    ports:
+      - "9442:9442"
+      - "9000:9000"
+    environment:
+      MINIO_ROOT_USER: lreas
+      MINIO_ROOT_PASSWORD: 12345678
+    volumes:
+      - ./Server/minio/data:/data
+    command: server /data --console-address ":9442"
+    networks:
+      - kong-net
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"  # AMQP protocol port
+      - "15672:15672"  # Management console
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - real-time-quiz-net
+
+  lreas-database:
+    image: postgres:17.0
+    container_name: lreas-database
+    environment:
+      POSTGRES_USER: lreas
+      POSTGRES_DB: kong
+      POSTGRES_PASSWORD: lreas
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./Server/database/backup:/docker-entrypoint-initdb.d
+    networks:
+      - kong-net
+    entrypoint: >
+      sh -c "
+      docker-entrypoint.sh postgres &
+      sleep 5;
+      psql -U lreas -d postgres -tc \"SELECT 1 FROM pg_database WHERE datname = 'lreas'\" | grep -q 1 || createdb lreas -U lreas;
+      psql -U lreas -d postgres -tc \"SELECT 1 FROM pg_database WHERE datname = 'kong'\" | grep -q 1 || createdb kong -U lreas;
+      wait"
+
+  kong-migrations:
+    image: kong:latest
+    container_name: kong-migrations
+    command: "kong migrations bootstrap"
+    depends_on:
+      - lreas-database
+    links:
+      - lreas-database:lreas-database
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: lreas-database
+      KONG_PG_USER: lreas
+      KONG_PG_PASSWORD: lreas
+      KONG_PG_DATABASE: kong
+    networks:
+      - kong-net
+    restart: on-failure
+
+  kong:
+    image: kong:latest
+    container_name: kong
+    links:
+      - lreas-database:lreas-database
+    networks:
+      - kong-net
+    environment:
+      KONG_STREAM_LISTEN: "0.0.0.0:5000, 0.0.0.0:5001"
+      KONG_NGINX_HTTP_UPSTREAM_KEEPALIVE_REQUESTS: "100"
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: lreas-database
+      KONG_PG_USER: lreas
+      KONG_PG_PASSWORD: lreas
+      KONG_PG_DATABASE: kong
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl # Admin API and HTTPS
+      KONG_DECLARATIVE_CONFIG: /etc/kong/kong.yml  # Load kong.yml declaratively
+      KONG_PORTAL_GUI_HOST: localhost:8002, localhost:8445 ssl  # Kong Manager GUI
+      KONG_PORTAL: on  # Enable Kong Manager
+      # KONG_PROXY_LISTEN: "0.0.0.0:8080, 0.0.0.0:443 ssl"
+      KONG_PROXY_LISTEN: "0.0.0.0:8080"
+      KONG_ADMIN_GUI_AUTH: lreas:lreas  # Kong Manager GUI credentials 
+      # KONG_SSL_CERT: /etc/kong/certs/cert.pem
+      # KONG_SSL_CERT_KEY: /etc/kong/certs/cert-key.pem
+    volumes:
+      - ./Gateway/:/etc/kong/certs
+    ports:
+      - "8001:8001"
+      - "8444:8444"
+      - "8002:8002"  # Kong Manager GUI
+      - "8445:8445"  # Kong Manager GUI SSL
+      - "80:8080"  # Client requests
+      - "443:443"
+    restart: on-failure
+
+  client:
+    image: node:22.0  # Use the appropriate Node version
+    container_name: client
+    working_dir: /client
+    volumes:
+      - ./Client:/client  # Map local client folder to container
+    # command: sh -c "npm install -g pm2 && npm install -g serve && pm2 start ecosystem.config.js --env production && pm2 logs "  # Start the client using PM2
+    command: sh -c "npm start"
+    networks:
+      - kong-net
+    depends_on:
+      - kong  # Ensure Kong is up before starting the client
+    environment:
+      - CHOKIDAR_USEPOLLING=true  # Enable polling to avoid inotify issues in Docker
+    ports:
+      - "3000:3000"
+      # - 3000:8080
+    restart: on-failure
+
+  documents:
+    image: node:22.0  # Use the appropriate Node version
+    container_name: documents
+    working_dir: /server
+    volumes:
+      - ./Server/document_editor:/server  # Map local server folder to container
+    command: sh -c "npm install && npm install nodemon -g --save && npm start"
+    networks:
+      - kong-net
+    depends_on:
+      - kong  # Ensure Kong is up before starting the server
+      - mongo
+    environment:
+      - CHOKIDAR_USEPOLLING=true  # Enable polling to avoid inotify issues in Docker
+    expose:
+      - "5000"  # Expose port inside the Docker network
+    ports:
+      - "5000:5000"
+
+  real-time-quiz:
+    image: node:22.0  # Use the appropriate Node version
+    container_name: real-time-quiz
+    working_dir: /server
+    volumes:
+      - ./Server/real_time_quiz:/server  # Map local server folder to container
+    command: sh -c "npm install && npm install nodemon -g --save && npm start"
+    networks:
+      - kong-net
+      - real-time-quiz-net
+    depends_on:
+      - kong  # Ensure Kong is up before starting the server
+      - mongo
+      - rabbitmq
+    environment:
+      - CHOKIDAR_USEPOLLING=true  # Enable polling to avoid inotify issues in Docker
+    expose:
+      - "5001"  # Expose port inside the Docker network
+    ports:
+      - "5001:5001"
+
+  email-service:
+    image: node:22.0  # Use the appropriate Node version
+    container_name: email-service
+    working_dir: /server
+    volumes:
+      - ./Server/email:/server  # Map local server folder to container
+    command: sh -c "npm install && npm install nodemon -g --save && npm start"
+    networks:
+      - kong-net
+      - real-time-quiz-net
+    depends_on:
+      - kong  # Ensure Kong is up before starting the server
+    environment:
+      - CHOKIDAR_USEPOLLING=true  # Enable polling to avoid inotify issues in Docker
+    expose:
+      - "2010"  # Expose port inside the Docker network
+    ports:
+      - "2010:2010"
+
+  database-service:
+    image: eclipse-temurin:17-jdk
+    container_name: database-service
+    depends_on:
+      - lreas-database
+    working_dir: /server/database_service
+    volumes:
+      - ./Server/database:/server/database_service
+    command: sh -c "./mvnw wrapper:wrapper &&
+      ./mvnw dependency:go-offline &&
+      ./mvnw clean install &&
+      java -jar /server/database_service/target/*.jar"
+    networks:
+      - kong-net
+    ports:
+      - "2000:2000"
+
+  authentication-service:
+    image: eclipse-temurin:17-jdk
+    container_name: authentication-service
+    working_dir: /server/authentication_service
+    depends_on:
+      - database-service
+    volumes:
+      - ./Server/authentication:/server/authentication_service
+    command: sh -c "./mvnw wrapper:wrapper &&
+      ./mvnw clean install &&
+      java -jar /server/authentication_service/target/*.jar"
+    networks:
+      - kong-net
+    ports:
+      - "2001:2001"
+      - "3001:3001" # use for grpc
+
+  profile-service:
+    image: eclipse-temurin:17-jdk
+    container_name: profile-service
+    working_dir: /server/profile_service
+    depends_on:
+      - database-service
+    volumes:
+      - ./Server/profile:/server/profile_service
+    command: sh -c "./mvnw wrapper:wrapper &&
+      ./mvnw dependency:go-offline &&
+      ./mvnw clean install &&
+      java -jar /server/profile_service/target/*.jar"
+    networks:
+      - kong-net
+    ports:
+      - "2002:2002"
+      - "3002:3002" # use for grpc
+
+  quiz-service:
+     image: eclipse-temurin:17-jdk
+     container_name: quiz-service
+     working_dir: /server/quiz_service
+     depends_on:
+      - database-service
+     volumes:
+       - ./Server/quiz:/server/quiz_service
+     command: sh -c "./mvnw wrapper:wrapper &&
+       ./mvnw dependency:go-offline &&
+       ./mvnw clean install &&
+       java -jar /server/quiz_service/target/*.jar"
+     networks:
+       - kong-net
+     ports:
+       - "2003:2003"
+       - "3003:3003" # use for grpc
+
+  generator-service:
+     image: eclipse-temurin:17-jdk
+     container_name: generator-service
+     working_dir: /server/generator_service
+     depends_on:
+      - database-service
+     volumes:
+       - ./Server/generator:/server/generator_service
+     command: sh -c "./mvnw wrapper:wrapper &&
+       ./mvnw dependency:go-offline &&
+       ./mvnw clean install &&
+       java -jar /server/generator_service/target/*.jar"
+     networks:
+       - kong-net
+     ports:
+       - "2004:2004"
+       - "3004:3004" # use for grpc
+
+  file-management-service:
+    image: eclipse-temurin:17-jdk
+    container_name: file-management-service
+    working_dir: /server/file_management_service
+    depends_on:
+      - database-service
+    volumes:
+      - ./Server/file_management:/server/file_management_service
+    command: sh -c "./mvnw wrapper:wrapper &&
+      ./mvnw dependency:go-offline &&
+      ./mvnw clean install &&
+      java -jar /server/file_management_service/target/*.jar"
+    networks:
+      - kong-net
+    ports:
+      - "2005:2005"
+      - "3005:3005" # use for grpc
+
+  forum-service:
+    image: eclipse-temurin:17-jdk
+    container_name: forum-service
+    working_dir: /server/forum_service
+    depends_on:
+      - database-service
+    volumes:
+      - ./Server/forum:/server/forum_service
+    command: sh -c "./mvnw wrapper:wrapper &&
+      ./mvnw dependency:go-offline &&
+      ./mvnw clean install &&
+      java -jar /server/forum_service/target/*.jar"
+    networks:
+      - kong-net
+    ports:
+      - "2006:2006"
+      - "3006:3006" # use for grpc
+
+  admin-service:
+    image: eclipse-temurin:17-jdk
+    container_name: admin-service
+    working_dir: /server/admin_service
+    depends_on:
+      - database-service
+    volumes:
+      - ./Server/admin:/server/admin_service
+    command: sh -c "./mvnw wrapper:wrapper &&
+      ./mvnw dependency:go-offline &&
+      ./mvnw clean install &&
+      java -jar /server/admin_service/target/*.jar"
+    networks:
+      - kong-net
+    ports:
+      - "2007:2007"
+      - "3007:3007" # use for grpc
+
+volumes:
+  rabbitmq_data:

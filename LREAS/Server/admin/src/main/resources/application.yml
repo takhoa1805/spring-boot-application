@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: admin
+
+  profiles:
+    active: "dev"

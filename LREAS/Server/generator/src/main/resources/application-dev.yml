@@ -1,0 +1,64 @@
+# dev profile
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  datasource:
+    url: jdbc:postgresql://lreas-database:5432/lreas
+    username: lreas
+    password: lreas
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+
+  data:
+    mongodb:
+      host: mongo
+      port: 27017
+      database: lreas
+      username: lreas
+      password: lreas
+      authentication-database: admin
+
+    jdbc:
+      repositories:
+        enabled: false
+
+  servlet:
+    multipart:
+      max-file-size: 2GB
+      max-request-size: 2GB
+
+gemini:
+  model-code: models/gemini-1.5-flash-002
+  base-url: https://generativelanguage.googleapis.com/v1beta/%s:generateContent?key=%s
+  cache-url: https://generativelanguage.googleapis.com/v1beta/cachedContents?key=%s
+  api-key: AIzaSyBp4h7en6qZoEnFjYq-xq1GzK57KUboUmA
+
+minio:
+#  url: https://play.min.io
+  url: http://minio:9000
+  bucket: lreas
+  access-key: bPFQQqMlXLeLk9MvXLDK
+  secret-key: fl6lT8Rrbzhxoki0HrtKyJuNY4aa1Q4XJkcuxRe6
+
+grpc:
+  client:
+    grpc_quiz_service:
+      address: quiz-service:3003
+      negotiation-type: plaintext
+    grpc_file_management_service:
+      address: file-management-service:3005
+      negotiation-type: plaintext
+  server:
+    port: -1
+
+documents:
+  base-url: http://documents:5000
+
+server:
+  port: 2004

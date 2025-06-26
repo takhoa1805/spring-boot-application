@@ -1,0 +1,98 @@
+.question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    /* width: 90%;  */
+    /* max-width: 1000px;  */
+    margin: auto;
+    padding: 30px; /* Increased padding */
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    min-height: 60vh; /* Minimum height to center vertically */
+}
+
+.question-title {
+    font-size: 2.5rem; /* Increased font size */
+    font-weight: bold;
+    margin-bottom: 30px; /* Increased margin */
+}
+
+.answer-options {
+    display: flex; /* Use flexbox for row layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    gap: 20px; /* Increased gap */
+    width: 100%;
+    flex-wrap: wrap; /* Allow wrapping to new lines if needed */
+}
+
+.answer-button {
+    padding: 20px 30px; /* Increased padding */
+    font-size: 1.5rem; /* Increased font size */
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    min-width: 200px; /* Minimum width for buttons */
+}
+
+.answer-0 {
+    background-color: #ff595e;
+}
+
+.answer-1 {
+    background-color: #1982c4;
+}
+
+.answer-button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.next-question-action {
+    margin-top: 40px; /* Increased margin */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.next-question-button {
+    padding: 15px 30px; /* Increased padding */
+    font-size: 1.3em; /* Increased font size */
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.next-question-button:hover {
+    background-color: #0056b3;
+}
+
+.next-question-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.answer-button:disabled {
+    opacity: 0.7;
+    cursor: default;
+    background-color: #e0e0e0;
+    color: #666;
+}
+
+.answer-count-display {
+    font-size: 1.3rem; /* Increased font size */
+    margin-bottom: 25px; /* Increased margin */
+    font-weight: bold;
+}

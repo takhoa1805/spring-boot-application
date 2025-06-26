@@ -1,0 +1,306 @@
+.enter-quiz-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .enter-quiz-page-container {
+        display: flex;
+        width: 100%;
+        height: 91%;
+
+        .container {
+            display: flex;
+            width: 100%;
+
+            .main-container {
+                flex: 1;
+                padding: 1rem;
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Lato', sans-serif;
+                background-color: white;
+
+                .back {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.9375rem;
+                    position: absolute;
+                    top: 1.5rem;
+                    left: 1.5rem;
+                    cursor: pointer;
+
+                    img {
+                        width: 1.3rem;
+                        height: auto;
+                    }
+                    @media (max-width: 991px) {
+                        img {
+                            width: 1rem;
+                            height: auto;
+                        }
+                    }
+
+                    .text {
+                        color: #000;
+                        font-size: 1.5rem;
+                        font-family: 'Lato', sans-serif;
+                    }
+                    @media (max-width: 991px) {
+                        .text {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+
+                .main-box {
+                    width: 40%;
+                    height: fit-content;
+                    flex-shrink: 0;
+                    border-radius: 0.625rem;
+                    border: 0.3px solid rgba(0, 0, 0, 0.2);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    padding: 1.75rem;
+
+                    .traditional-quiz-title {
+                        color: #000;
+                        text-align: center;
+                        font-size: 1.75rem;
+                        font-weight: 500;
+                    }
+                    .no-title {
+                        font-style: italic;
+                        font-weight: normal;
+                    }
+
+                    .options {
+                        display: inline-flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        gap: 0.9375rem;
+                        cursor: pointer;
+
+                        img {
+                            width: 1.5rem;
+                            height: 1.5rem;
+                        }
+
+                        .rotate {
+                            transform: rotate(90deg);
+                        }
+                    }
+
+                    .main {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 2.73rem;
+
+                        .description {
+                            text-align: left;
+                            word-wrap: break-word;
+                            max-width: 600px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                        .no-description {
+                            text-align: center;
+                            font-style: italic;
+                        }
+
+                        .quiz-info {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 0.9rem;
+
+                            .info {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                gap: 0.9rem;
+
+                                img {
+                                    width: 1.5rem;
+                                    height: 1.5rem;
+                                }
+
+                                .text {
+                                    color: #000;
+                                    font-size: 0.9rem;
+                                }
+                            }
+                        }
+
+                        .bottom {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+
+                            .user {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                gap: 0.5rem;
+    
+                                img {
+                                    width: 2.125rem;
+                                    aspect-ratio: 1;
+                                    border-radius: 50%;
+                                }
+    
+                                .right {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-start;
+    
+                                    .username {
+                                        color: #000;
+                                        font-size: 0.75rem;
+                                        font-weight: 600;
+                                    }
+    
+                                    .status {
+                                        font-size: 0.75rem;
+                                        font-weight: 300;
+                                    }
+                                }
+                            }
+
+                            .action-buttons {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                justify-content: space-between;
+                                width: 50%;
+
+                                button {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    border-radius: 0.5rem;
+                                    padding: 0.685rem;
+                                    border: none;
+                                    gap: 0.8rem;
+
+                                    img {
+                                        width: 1.5rem;
+                                        height: auto;
+                                    }
+                                }
+
+                                .start-button {
+                                    background-color: #3F67FB;
+                                    width: 37%;
+
+                                    .text {
+                                        color: #FFF;
+                                    }
+                                    @media (max-width: 991px) {
+                                        .text {
+                                            font-size: 1rem;
+                                        }
+                                    }
+                                }
+                                .start-button:not(:disabled):hover {
+                                    cursor: pointer;
+                                    background-color: #0039cb;
+                                    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+                                }
+                                .start-button:not(:disabled):active {
+                                    background-color: #002984;
+                                    transform: scale(0.95);
+                                }
+                                @media (max-width: 991px) {
+                                    .start-button {
+                                        width: 40%;
+                                    }
+                                }
+
+                                .attempt-button {
+                                    background-color: rgb(238, 238, 238);
+                                    width: 59%;
+
+                                    .text {
+                                        color: #000;
+                                    }
+                                    @media (max-width: 991px) {
+                                        .text {
+                                            font-size: 1rem;
+                                        }
+                                    }
+                                }
+                                .attempt-button:hover {
+                                    cursor: pointer;
+                                    background-color: #f0f0f0;
+                                    border-color: #aaa;
+                                    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+                                }
+                                .attempt-button:active {
+                                    background-color: #e0e0e0;
+                                    border-color: #888;
+                                    transform: scale(0.95);
+                                }
+                                @media (max-width: 991px) {
+                                    .attempt-button {
+                                        width: 56%;
+                                    }
+                                }
+                            }
+                            @media (max-width: 991px) {
+                                .action-buttons {
+                                    flex-direction: row;
+                                    gap: 0.5rem;
+                                    width: 76%;
+                                    align-self: center;
+                                }
+                            }
+                        }
+                        @media (max-width: 991px) {
+                            .bottom {
+                                gap: 1.5rem;
+                                flex-direction: column;
+                            }
+                        }
+
+                        .error-explanation {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 1rem;
+
+                            img {
+                                width: 1.5rem;
+                                height: 1.5rem;
+                            }
+
+                            .text {
+                                color: #000;
+                                font-size: 0.9rem;
+                                text-align: center;
+                                font-style: italic;
+                            }
+                        }
+                    }
+                    @media (max-width: 991px) {
+                        .main {
+                            gap: 1rem;
+                        }
+                    }
+                }
+                @media (max-width: 991px) {
+                    .main-box {
+                        width: 80%;
+                        padding-bottom: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}

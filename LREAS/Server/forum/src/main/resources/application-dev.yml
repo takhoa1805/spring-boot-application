@@ -1,0 +1,26 @@
+# dev profile
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  datasource:
+    url: jdbc:postgresql://lreas-database:5432/lreas
+    username: lreas
+    password: lreas
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+
+minio:
+  #  url: https://play.min.io
+  url: http://minio:9000
+  bucket: lreas
+  access-key: bPFQQqMlXLeLk9MvXLDK
+  secret-key: fl6lT8Rrbzhxoki0HrtKyJuNY4aa1Q4XJkcuxRe6
+
+server:
+  port: 2006

@@ -1,0 +1,17 @@
+{
+    "model": "%s",
+    "contents": [
+        {
+            "parts": [
+                {
+                    "inline_data": {
+                        "mime_type":"%s",
+                        "data": "%s"
+                    }
+                }
+            ],
+            "role": "user"
+        }
+    ],
+    "ttl": "%s"
+}

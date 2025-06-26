@@ -1,0 +1,70 @@
+.delete-popup {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .popup {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 350px;
+        position: relative;
+
+        .message {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: start;
+        }
+
+        .description {
+            font-size: 14px;
+            margin-bottom: 1.5rem;
+            text-align: start;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: 0.5rem;
+
+            button {
+                font-size: 1rem;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: all 0.1s ease-in-out;
+                outline: none;
+                font-family: inherit;
+                padding: 0.5rem 1rem;
+            }
+
+            .ok-button {
+                background: linear-gradient(135deg, #7366ff, #5c4df0);
+                color: white;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .ok-button:hover {
+                background: linear-gradient(135deg, #5c4df0, #4532c6);
+                transform: scale(1.07);
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+            }
+    
+            .cancel-button {
+                background-color: #f5f5f5;
+                color: #333;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .cancel-button:hover {
+                background-color: #e0e0e0;
+                transform: scale(1.05);
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}

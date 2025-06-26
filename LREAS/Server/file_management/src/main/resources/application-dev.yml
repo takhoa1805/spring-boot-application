@@ -1,0 +1,48 @@
+# dev profile
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  datasource:
+    url: jdbc:postgresql://lreas-database:5432/lreas
+    username: lreas
+    password: lreas
+
+  data:
+    mongodb:
+      host: mongo
+      port: 27017
+      database: lreas
+      username: lreas
+      password: lreas
+      authentication-database: admin
+
+    jdbc:
+      repositories:
+        enabled: false
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+
+  servlet:
+    multipart:
+      max-file-size: 2GB
+      max-request-size: 2GB
+
+grpc:
+  server:
+    port: 3005
+
+minio:
+  #  url: https://play.min.io
+  url: http://minio:9000
+  bucket: lreas
+  access-key: bPFQQqMlXLeLk9MvXLDK
+  secret-key: fl6lT8Rrbzhxoki0HrtKyJuNY4aa1Q4XJkcuxRe6
+
+server:
+  port: 2005

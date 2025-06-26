@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: database
+
+  profiles:
+    active: "dev"

@@ -1,0 +1,29 @@
+{
+  "name": "real_time_quiz",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@socket.io/admin-ui": "^0.5.1",
+    "amqplib": "^0.10.5",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-ws": "^5.0.2",
+    "mongoose": "^8.12.1",
+    "morgan": "^1.10.0",
+    "sharedb": "^5.2.0",
+    "sharedb-mongo": "^5.0.0",
+    "socket.io": "^4.8.1",
+    "websocket": "^1.0.35",
+    "ws": "^8.18.1"
+  }
+}

@@ -1,0 +1,91 @@
+.description-popup {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .popup-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        width: 500px;
+        aspect-ratio: 1.618;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .quiz-description-title {
+            font-size: 1.25rem;
+        }
+
+        .textarea {
+            width: 100%;
+            height: 80px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            resize: none;
+            box-sizing: border-box;
+            flex-grow: 1;
+            font-family: inherit;
+        }
+
+        .limit-text {
+            font-size: 0.8rem;
+            font-style: italic;
+            margin-top: -0.8rem;
+            align-self: flex-end;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            justify-content: flex-end;
+            align-items: center;
+
+            button {
+                font-size: 1rem;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: all 0.1s ease-in-out;
+                outline: none;
+                font-family: inherit;
+                padding: 0.5rem 1rem;
+            }
+
+            .cancel-button {
+                background-color: #e3e3e3;
+                color: #000;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .cancel-button:hover {
+                background-color: #e0e0e0;
+                transform: scale(1.05);
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .cancel-button:active {
+                transform: scale(0.95);
+            }
+
+            .submit-button {
+                background-color: #007bff;
+                color: #fff;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .submit-button:hover {
+                background-color: #0056b3;
+                transform: scale(1.07);
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+            }
+            .submit-button:active {
+                transform: scale(0.95);
+            }
+        }
+    }
+}

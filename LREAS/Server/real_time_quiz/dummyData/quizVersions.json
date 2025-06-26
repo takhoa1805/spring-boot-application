@@ -1,0 +1,17 @@
+[
+  {
+    "_id": { "$oid": "65e0f8000000000000000001" },
+    "quiz_id": { "$oid": "65e0f7000000000000000001" },
+    "title": "Simple Math Quiz",
+    "description": "A basic math quiz.",
+    "is_game": true,
+    "show_correct_answer": true,
+    "questions": [
+      { "$oid": "65e0f9000000000000000001" },
+      { "$oid": "65e0f9000000000000000002" },
+      { "$oid": "65e0f9000000000000000003" }
+    ],
+    "createdAt": { "$date": "2025-03-27T00:00:00Z" },
+    "updatedAt": { "$date": "2025-03-27T00:00:00Z" }
+  }
+]

@@ -1,0 +1,92 @@
+.navigation-drawer {
+    background-color: rgba(234, 241, 251, 1);
+    display: flex;
+    min-height: 20vh;
+    padding-top: 0.5rem;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: rgba(0, 0, 0, 1);
+    letter-spacing: 0.006rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0;
+    font: 600 14px/1 Lato, sans-serif;
+    width: 254.475px;
+    transition: width 0.5s;
+}
+.navigation-drawer::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+    background: #EDEDF0;
+    display: none;
+}
+.navigation-drawer::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.nav-tab {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    align-items: center;
+    gap: 1.25rem;
+    justify-content: start;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(233, 242, 255, 1);
+    cursor: pointer;
+}
+.nav-tab.active {
+    background-color: rgba(234, 234, 234, 1);
+}
+.nav-tab:hover {
+    background-color: rgba(234, 234, 234, 1);
+}
+.nav-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 24px;
+    align-self: stretch;
+    margin: auto 0;
+}
+.nav-text {
+    align-self: stretch;
+    margin: auto 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+.navigation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.collapse {
+    margin-bottom: 1rem;
+    cursor: pointer;
+    width: 100%;
+    padding: 0.2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    transition: visibility 0.2s ease-in-out, opacity 0.2s ease-in-out;
+
+    img {
+        width: 2rem;
+        height: auto;
+        transform: rotate(180deg);
+        transition: transform 0.5s;
+    }
+}
+.collapse:hover {
+    background-color: rgba(234, 234, 234, 1);
+}
+.collapse.active {
+    background-color: rgba(234, 234, 234, 1);
+}

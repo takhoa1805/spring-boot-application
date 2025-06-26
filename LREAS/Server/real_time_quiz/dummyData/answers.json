@@ -1,0 +1,50 @@
+[
+  {
+    "_id": { "$oid": "65e0fa000000000000000001" },
+    "question": { "$oid": "65e0f9000000000000000001" },
+    "text": "Answer A",
+    "is_correct": false,
+    "createdAt": { "$date": "2025-03-27T00:00:00Z" },
+    "updatedAt": { "$date": "2025-03-27T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "65e0fa000000000000000002" },
+    "question": { "$oid": "65e0f9000000000000000001" },
+    "text": "Answer B",
+    "is_correct": true,
+    "createdAt": { "$date": "2025-03-27T00:00:00Z" },
+    "updatedAt": { "$date": "2025-03-27T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "65e0fa000000000000000003" },
+    "question": { "$oid": "65e0f9000000000000000002" },
+    "text": "10",
+    "is_correct": false,
+    "createdAt": { "$date": "2025-03-27T00:00:00Z" },
+    "updatedAt": { "$date": "2025-03-27T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "65e0fa000000000000000004" },
+    "question": { "$oid": "65e0f9000000000000000002" },
+    "text": "15",
+    "is_correct": true,
+    "createdAt": { "$date": "2025-03-27T00:00:00Z" },
+    "updatedAt": { "$date": "2025-03-27T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "65e0fa000000000000000005" },
+    "question": { "$oid": "65e0f9000000000000000003" },
+    "text": "2",
+    "is_correct": false,
+    "createdAt": { "$date": "2025-03-27T00:00:00Z" },
+    "updatedAt": { "$date": "2025-03-27T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "65e0fa000000000000000006" },
+    "question": { "$oid": "65e0f9000000000000000003" },
+    "text": "4",
+    "is_correct": true,
+    "createdAt": { "$date": "2025-03-27T00:00:00Z" },
+    "updatedAt": { "$date": "2025-03-27T00:00:00Z" }
+  }
+]

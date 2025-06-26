@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package com.lreas.grpc;
+
+service GrpcFileManagementService {
+  rpc createDocument (NewDocumentsGrpc) returns (NewDocumentsInfoGrpc);
+}
+
+message NewDocumentsGrpc {
+  string parentId = 1;
+  string name = 2;
+  string type = 3;
+  string userId = 4;
+}
+
+message NewDocumentsInfoGrpc {
+  bool success = 1;
+  string message = 2;
+  string resourceId = 3;
+  string parentId = 4;
+  string name = 5;
+  string type = 6;
+  string ownerId = 7;
+  string mongoId = 8;
+}

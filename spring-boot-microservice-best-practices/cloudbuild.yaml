@@ -1,0 +1,28 @@
+steps:
+  - name: 'gradle:8.5-jdk21'
+    entrypoint: 'gradle'
+    args: ['build', '-x', 'test']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/companieshouse', '.']
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "eu.gcr.io/$PROJECT_ID/companieshouse"]
+  - name: "gcr.io/cloud-builders/docker"
+    script: |
+      curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/local/bin
+      scripts/vulnerability-checks.sh
+    env:
+      - 'DOCKER_USER=eu.gcr.io/$PROJECT_ID'
+      - 'DOCKER_IMAGE=companieshouse'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+      'run',
+      'deploy',
+      'companieshouse',
+      '--image',
+      'eu.gcr.io/$PROJECT_ID/companieshouse',
+      '--region',
+      'europe-west1',
+      '--allow-unauthenticated',
+      '--platform',
+      'managed',
+    ]

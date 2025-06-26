@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /companieshouse
+
+spring:
+  resources:
+    add-mappings: true
+  profiles:
+    active: default
+
+logging:
+  level:
+    org:
+      springframework:
+        web: ERROR
+    com:
+      uk:
+        companieshouse: DEBUG
+
+govCompaniesHouse:
+  endpoint: https://api.company-information.service.gov.uk/search/companies?q={crn}
+  authUserName: dummy-auth-user

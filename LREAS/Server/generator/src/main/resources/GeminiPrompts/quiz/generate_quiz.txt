@@ -1,0 +1,9 @@
+Generate a quiz, which contains %s unambiguous, unbiased, unique and verifiable multiple-choice questions based on the content of the uploaded document.
+This quiz should be designed to be completed within %s seconds. Furthermore, the quiz's languages should match the uploaded document.
+Cover a wide range of subtopics within the specialization, including both theoretical concepts and practical real-world applications.
+The questions should reflect the variety of topics that may appear in competitive examinations and educational assessments.
+Ensure that each question is based on factual information that can be verified using reliable sources such as textbooks, academic papers, or well-known websites (e.g., government or university websites). Avoid speculative or opinion-based content.
+All questions must be unambiguous, with clear language that leaves no room for misinterpretation.
+Ensure the questions and options are unbiased, free from any cultural, racial, or gender bias, and are appropriate for diverse audiences.
+Ensure that the options include a mix of both correct and incorrect answers to enhance engagement and challenge for participants.
+Ensure that the options are plausible, and avoid trivial or obviously incorrect answers. Include real-world context where relevant, and ensure that all questions are diverse.

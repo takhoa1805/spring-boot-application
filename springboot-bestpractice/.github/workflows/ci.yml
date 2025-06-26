@@ -1,0 +1,49 @@
+name: springboot-bestpractice
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  skipci:
+    runs-on: ubuntu-latest
+    if: "! contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - run: echo "${{ github.event.head_commit.message }}"
+
+  test:
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/master'
+    steps:
+      - name: 'Set up Java'
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: checkout
+        uses: actions/checkout@v1
+
+      - name: unit-test
+        run: ./gradlew clean test
+
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: 'Set up Java'
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: checkout
+        uses: actions/checkout@v1
+
+      - name: build
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: sh .github/scripts/build.sh

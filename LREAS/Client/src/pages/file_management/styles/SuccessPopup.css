@@ -1,0 +1,61 @@
+.success-popup {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .popup {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+        position: relative;
+    
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .success-icon::before {
+            content: "\2713";
+            color: white;
+            font-size: 30px;
+        }
+        .message {
+            margin-top: 40px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .description {
+            color: gray;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .ok-button {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .ok-button:hover {
+            background: #28a745;
+        }
+    }
+}

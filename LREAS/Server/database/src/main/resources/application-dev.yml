@@ -1,0 +1,28 @@
+# dev profile
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  datasource:
+    url: jdbc:postgresql://lreas-database:5432/lreas
+    username: lreas
+    password: lreas
+
+  data:
+    mongodb:
+      host: mongo
+      port: 27017
+      database: lreas
+      username: lreas
+      password: lreas
+      authentication-database: admin
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+
+server:
+  port: 2000

@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package com.lreas.grpc;
+
+import "google/protobuf/empty.proto";
+
+service GrpcQuizService {
+  rpc createQuiz (CreateQuizGrpc) returns (QuizResourcesGrpc);
+  rpc updateQuiz (QuizResourcesGrpc) returns (google.protobuf.Empty);
+}
+
+message CreateQuizGrpc {
+  string contentName = 1;
+  repeated Collaborator collaborators = 2;
+  string parentResourceId = 3;
+  string userId = 4;
+}
+
+message Collaborator {
+  string id = 1;
+  string role = 2;
+}
+
+message QuizResourcesGrpc {
+  string resourceId = 1;
+  string quizId = 2;
+  bool isGame = 3;
+  string startTime = 4; // unix timestamp
+  string endTime = 5;
+  int32 maxPlayer = 6;
+  string description = 7;
+  string userId = 8;
+  string parentResourceId = 9;
+  string name = 10;
+  bool showCorrectAnswer = 11;
+  int32 allowedAttempts = 12;
+  bool shuffleAnswers = 13;
+  double totalTime = 14;
+  double totalPoints = 15;
+  string createdTime = 16;
+  string updatedTime = 17;
+  repeated QuestionGrpc questions = 18;
+}
+
+message QuestionGrpc {
+  string questionId = 1;
+  string question = 2;
+  double time = 3;
+  double points = 4;
+  int32 position = 5;
+  string imageObjectName = 6;
+  string imageUrl = 7;
+  string createdTime = 8;
+  string updatedTime = 9;
+  map<string, string> imageMetadata = 10;
+  repeated ChoiceGrpc choices = 11;
+}
+
+message ChoiceGrpc {
+  string choiceId = 1;
+  string answer = 2;
+  bool correct = 3;
+  string createdTime = 4;
+  string updatedTime = 5;
+}

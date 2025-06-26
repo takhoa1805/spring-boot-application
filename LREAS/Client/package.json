@@ -1,0 +1,77 @@
+{
+  "name": "lreas",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/lato": "^5.1.1",
+    "@fontsource/roboto": "^5.1.0",
+    "@mui/icons-material": "^6.4.11",
+    "@mui/material": "^6.4.11",
+    "@mui/styled-engine-sc": "^6.1.4",
+    "@mui/system": "^7.0.2",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.5",
+    "dotenv-webpack": "^8.1.0",
+    "lreas": "file:",
+    "lucide-react": "^0.488.0",
+    "papaparse": "^5.5.2",
+    "prosemirror-commands": "^1.7.1",
+    "prosemirror-example-setup": "^1.2.3",
+    "prosemirror-history": "^1.4.1",
+    "prosemirror-inputrules": "^1.5.0",
+    "prosemirror-keymap": "^1.2.3",
+    "prosemirror-menu": "^1.2.5",
+    "prosemirror-model": "^1.24.1",
+    "prosemirror-schema-basic": "^1.2.4",
+    "prosemirror-schema-list": "^1.5.1",
+    "prosemirror-state": "^1.4.3",
+    "prosemirror-view": "^1.38.1",
+    "react": "^18.3.1",
+    "react-circular-progressbar": "^2.2.0",
+    "react-color": "^2.19.3",
+    "react-colorful": "^5.6.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.3.5",
+    "react-hook-form": "^7.54.2",
+    "react-scripts": "^5.0.1",
+    "reactjs-popup": "^2.0.6",
+    "socket.io-client": "^4.8.1",
+    "styled-components": "^6.1.13",
+    "styled-jsx": "^5.1.6",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "serve": "serve -s build -l 3000",
+    "production": "npm run serve",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^7.5.0"
+  }
+}

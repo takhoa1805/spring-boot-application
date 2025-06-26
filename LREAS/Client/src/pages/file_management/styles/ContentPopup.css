@@ -1,0 +1,202 @@
+.content-popup {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        border-radius: 10px;
+        background: #EDEDF0;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background-color: #cbcbcc;
+        border-radius: 8px;
+    }
+
+    .popup-container {
+        width: 90%;
+        max-width: 500px;
+        max-height: 600px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+    }
+    
+    .popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+    
+    .close-button {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+    .input-group {
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: column;
+
+        .content-name {
+            width: -webkit-fill-available;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ddd;
+        }
+
+        label {
+            padding-bottom: 0.1rem;
+        }
+
+        .warning-text {
+            color: red;
+            font-size: 12px;
+            font-style: italic;
+        }
+    }
+    
+    .collaborator-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border: 1px solid #ddd;
+        margin-top: 4px;
+    }
+    
+    .remove-button {
+        background: none;
+        border: none;
+        color: red;
+        cursor: pointer;
+    }
+    
+    .add-user-button {
+        margin-top: 8px;
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+    }
+
+    .folder-selection {
+        padding: 8px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+    }
+    
+    .dropdown-group {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+    }
+    
+    .file-upload-box {
+        padding: 20px;
+        border: 2px dashed #ddd;
+        text-align: center;
+        margin-top: 4px;
+        cursor: pointer;
+    }
+    
+    .upload-link {
+        color: blue;
+        cursor: pointer;
+    }
+    
+    .file-info {
+        font-size: 12px;
+        color: gray;
+    }
+    
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .loading {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            align-items: flex-end;
+
+            img {
+                width: 1.1rem;
+                height: 1.1rem;
+                animation: spin 0.8s linear infinite;
+            }
+        }
+
+        .button-action-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+    
+            button {
+                font-size: 1rem;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: all 0.1s ease-in-out;
+                outline: none;
+                font-family: inherit;
+                padding: 0.5rem 1rem;
+            }
+    
+            .cancel-button {
+                background-color: #f5f5f5;
+                color: #333;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            
+            .cancel-button:hover {
+                background-color: #e0e0e0;
+                transform: scale(1.05);
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+        
+            .cancel-button:active {
+                transform: scale(0.95);
+            }
+            
+            .create-button {
+                background-image: linear-gradient(135deg, #7366ff, #5c4df0);
+                color: white;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+        
+            .create-button:not([disabled]):hover {
+                background-image: linear-gradient(135deg, #5c4df0, #4532c6);
+                transform: scale(1.07);
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+            }
+        
+            .create-button:not([disabled]):active {
+                transform: scale(0.95);
+            }
+        
+            .create-button-disabled {
+                opacity: 0.5;
+                cursor: default;
+            }
+        }
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "contents": [{
+        "parts": [
+            {
+                "text": "%s"
+            }
+        ]
+    }],
+    "cachedContent": "%s",
+    "generationConfig": {
+        "response_mime_type": "application/json",
+        "response_schema": {
+            "type": "OBJECT",
+            "properties": {
+                "totalTime": {
+                    "type": "NUMBER",
+                    "format": "double"
+                },
+                "totalPoints": {
+                    "type": "NUMBER",
+                    "format": "double"
+                },
+                "questions": {
+                    "type": "ARRAY",
+                    "items": {
+                        "type": "OBJECT",
+                        "properties": {
+                            "question": {
+                                "type": "STRING"
+                            },
+                            "time": {
+                                "type": "NUMBER",
+                                "format": "double"
+                            },
+                            "points": {
+                                "type": "NUMBER",
+                                "format": "double"
+                            },
+                            "choices": {
+                                "type": "ARRAY",
+                                "items": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "answer": {
+                                            "type": "STRING"
+                                        },
+                                        "correct": {
+                                            "type": "BOOLEAN"
+                                        }
+                                    },
+                                    "required": [
+                                        "answer", "correct"
+                                    ]
+                                }
+                            }
+                        },
+                        "required": [
+                            "question", "time", "points", "choices"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "totalTime", "totalPoints", "questions"
+            ]
+        }
+    }
+}

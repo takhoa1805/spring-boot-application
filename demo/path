@@ -1,0 +1,42 @@
+2025-06-25T14:25:49.972+07:00  INFO 22796 --- [demo] [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 21.0.7 with PID 22796 (C:\Users\takho\Desktop\Spring\spring-boot-application\demo\target\classes started by takho in C:\Users\takho\Desktop\Spring\spring-boot-application\demo)
+2025-06-25T14:25:49.973+07:00  INFO 22796 --- [demo] [restartedMain] com.example.demo.DemoApplication         : The following 1 profile is active: "dev"
+2025-06-25T14:25:49.978+07:00  INFO 22796 --- [demo] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file C:\Users\takho\Desktop\Spring\spring-boot-application\demo\compose.yml
+2025-06-25T14:25:50.447+07:00  INFO 22796 --- [demo] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-06-25T14:25:50.599+07:00  INFO 22796 --- [demo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-25T14:25:50.600+07:00  INFO 22796 --- [demo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-06-25T14:25:50.605+07:00  INFO 22796 --- [demo] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.UserRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-06-25T14:25:50.605+07:00  INFO 22796 --- [demo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JDBC repository interfaces.
+2025-06-25T14:25:50.607+07:00  INFO 22796 --- [demo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-25T14:25:50.608+07:00  INFO 22796 --- [demo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-25T14:25:50.613+07:00  INFO 22796 --- [demo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 1 JPA repository interface.
+2025-06-25T14:25:50.709+07:00  INFO 22796 --- [demo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-25T14:25:50.710+07:00  INFO 22796 --- [demo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-25T14:25:50.711+07:00  INFO 22796 --- [demo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-06-25T14:25:50.730+07:00  INFO 22796 --- [demo] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-25T14:25:50.730+07:00  INFO 22796 --- [demo] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 281 ms
+2025-06-25T14:25:50.762+07:00  INFO 22796 --- [demo] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-25T14:25:50.765+07:00  INFO 22796 --- [demo] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-25T14:25:50.773+07:00  INFO 22796 --- [demo] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-25T14:25:50.774+07:00  INFO 22796 --- [demo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2025-06-25T14:25:50.799+07:00  INFO 22796 --- [demo] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@196f6e98
+2025-06-25T14:25:50.799+07:00  INFO 22796 --- [demo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2025-06-25T14:25:50.807+07:00  INFO 22796 --- [demo] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-4)']
+	Database driver: undefined/unknown
+	Database version: 17.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-25T14:25:50.833+07:00  INFO 22796 --- [demo] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-25T14:25:50.846+07:00  INFO 22796 --- [demo] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-25T14:25:50.900+07:00  WARN 22796 --- [demo] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-25T14:25:51.111+07:00  INFO 22796 --- [demo] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-06-25T14:25:51.122+07:00  INFO 22796 --- [demo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-06-25T14:25:51.125+07:00  INFO 22796 --- [demo] [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 1.193 seconds (process running for 2354.515)
+2025-06-25T14:25:51.125+07:00  INFO 22796 --- [demo] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-06-25T14:25:59.730+07:00  INFO 22796 --- [demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-25T14:25:59.739+07:00  INFO 22796 --- [demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-25T14:25:59.740+07:00  INFO 22796 --- [demo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-25T14:25:59.741+07:00  INFO 22796 --- [demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2025-06-25T14:25:59.744+07:00  INFO 22796 --- [demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.

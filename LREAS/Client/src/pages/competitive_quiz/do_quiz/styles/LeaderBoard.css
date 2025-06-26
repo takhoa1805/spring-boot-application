@@ -1,0 +1,71 @@
+.leaderboard-container {
+    width: 80%;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .leaderboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .leaderboard-header h2 {
+    color: #333;
+  }
+  
+  .leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .leaderboard-table th,
+  .leaderboard-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .leaderboard-table th {
+    background-color: #4CAF50; /* Green header like Kahoot */
+    color: white;
+  }
+  
+  .leaderboard-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .leaderboard-table tbody tr:hover {
+    background-color: #ddd;
+  }
+
+.next-question-action {
+  margin-top: 40px; /* Increased margin */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.next-question-button {
+  padding: 15px 30px; /* Increased padding */
+  font-size: 1.3em; /* Increased font size */
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.next-question-button:hover {
+  background-color: #0056b3;
+}
+
+.next-question-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

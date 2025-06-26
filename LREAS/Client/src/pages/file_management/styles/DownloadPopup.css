@@ -1,0 +1,99 @@
+.download-popup {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .popup {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+        position: relative;
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+
+        .message {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+
+            img {
+                width: 1.1rem;
+                height: 1.1rem;
+                animation: spin 0.8s linear infinite;
+            }
+
+            .description {
+                font-size: 14px;
+                text-align: start;
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            position: relative;
+
+            .progress-bar-container {
+                height: 30px;
+                width: 100%;
+                background-color: #eee;
+                border-radius: 10px;
+
+                .progress-bar-fill {
+                    height: 100%;
+                    background-color: #4caf50;
+                    border-radius: 10px;
+                    transition: width 0.3s ease;
+                }
+            }
+
+            .progress-text {
+                font-size: 1rem;
+                position: absolute;
+                top: 15%;
+                left: 50%;
+            }
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            width: 100%;
+
+            button {
+                width: 100%;
+                font-size: 1rem;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: all 0.1s ease-in-out;
+                outline: none;
+                font-family: inherit;
+                padding: 0.5rem 1rem;
+            }
+    
+            .cancel-button {
+                background: linear-gradient(135deg, #7366ff, #5c4df0);
+                color: white;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .cancel-button:hover {
+                background: linear-gradient(135deg, #5c4df0, #4532c6);
+                transform: scale(1.07);
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+}

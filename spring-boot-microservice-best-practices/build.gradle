@@ -1,0 +1,171 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.3'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'jacoco'
+    id 'info.solidsoft.pitest' version '1.15.0'
+    id "org.owasp.dependencycheck" version "12.1.0"
+}
+
+String buildId = project.hasProperty('buildId') ? project['buildId'] : 'DEV'
+group = 'com.uk'
+version = "${semanticVersion}.${buildId}"
+sourceCompatibility = '21'
+
+/** Disables generating plain jar introduced in spring boot 2.5.0
+ **  https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/#packaging-executable.and-plain-archives
+ **/
+jar {
+    enabled = false
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    mapstructVersion = "1.6.3"
+    lombokVersion = "1.18.36"
+    wireMockVersion = "3.12.0"
+    ioCucumberVersion = "7.21.1"
+    springDocVersion = "2.8.5"
+    jacocoVersion = "0.8.9"
+    junitVintage = "5.11.4"
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    // Cucumber Dependencies for BDD
+    testImplementation "io.cucumber:cucumber-java:${ioCucumberVersion}"
+    testImplementation "io.cucumber:cucumber-junit:${ioCucumberVersion}"
+    testImplementation "io.cucumber:cucumber-spring:${ioCucumberVersion}"
+    testImplementation "org.junit.vintage:junit-vintage-engine:${junitVintage}"
+    //WireMock Dependencies
+    testImplementation "org.wiremock:wiremock-standalone:${wireMockVersion}"
+    //Lombok Dependencies
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    //MapStruct Dependencies
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    //SpringDoc
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocVersion}"
+
+    /*
+     *https://docs.gradle.org/current/userguide/dependency_management.html#sec:module_substitution
+     * Example 109. Example: Blacklisting a version with a replacement
+    */
+//    configurations.all {
+//        /***
+//         * This is how we can exclude transient dependencies
+//         * exclude group: "com.google.guava", module: "guava"
+//         */
+//        // Replacing a transient dependency to a higher version for fixing vulnerabilities
+//        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//            if (details.requested.group == 'org.yaml' && details.requested.name == 'snakeyaml' && details.requested.version == '1.33') {
+//                details.useVersion '2.0'
+//                details.because 'Fixes vulnerability in prior snakeyaml versions'
+//            }
+//        }
+//    }
+}
+
+// Property can be passed along with test task to avoid execution of e2e
+tasks.named('test') {
+    if (project.hasProperty('excludee2e')) {
+        println '********************************************************'
+        println '                   Excluding E2E tests'
+        println '********************************************************'
+        exclude '**/*e2e*'
+    }
+    if (project.hasProperty('e2e')) {
+        println '********************************************************'
+        println '                   Executing E2E tests'
+        println '********************************************************'
+        //include all tests from package
+        filter {
+            includeTestsMatching "com.uk.companieshouse.e2e.*"
+        }
+    }
+    useJUnitPlatform()
+}
+
+// Jacoco for Code Coverage
+jacoco {
+    toolVersion = "${jacocoVersion}"
+    reportsDirectory = file("$buildDir/customJacocoReportDir")
+}
+
+// Runs Jacoco tasks when build task is executed
+build {
+    finalizedBy jacocoTestReport
+    finalizedBy jacocoTestCoverageVerification
+}
+// Setting custom parameters when executing jacocoTestReport task
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("${buildDir}/reports/jacocoHtml")
+    }
+}
+
+// Setting custom parameters when executing jacocoTestCoverageVerification task for setting rules
+jacocoTestCoverageVerification {
+    dependsOn jacocoTestReport
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+
+        rule {
+            enabled = false
+            element = 'CLASS'
+            includes = ['org.gradle.*']
+
+            limit {
+                counter = 'LINE'
+                value = 'TOTALCOUNT'
+                maximum = 1.0
+            }
+        }
+    }
+}
+pitest {
+    junit5PluginVersion = '1.2.1'
+    targetClasses = ['com.uk.companieshouse.*']  // by default "${project.group}.*"
+    targetTests = ['com.uk.companieshouse.*']  // by default "${project.group}.*"
+    outputFormats = ['HTML']
+    timestampedReports = false
+    // TODO: Mutation tests failing due to port already in use exception, fix them and then we can remove below
+    excludedTestClasses = ['com.uk.companieshouse.e2e.*', 'com.uk.companieshouse.CompaniesHouseApplicationTest*']
+}
+// owasp dependency vulnerability check
+// Reference doc : https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
+dependencyCheck {
+    if (project.hasProperty('UseNVDKey')) {
+        println 'Executing DependencyCheckAnalyse with the NVD_API_KEY environment variable'
+        nvd {
+            apiKey = System.getenv('NVD_API_KEY')
+            delay = 3500
+        }
+    } else {
+        println 'Executing DependencyCheckAnalyse without NVD API Key'
+    }
+
+    analyzedTypes = ['jar']
+    // CI-tools usually needs XML-reports, but humans needs HTML.
+    formats = ['HTML', 'JUNIT']
+    // Specifies if the build should be failed if a CVSS score equal to or above a specified level is identified.
+    failBuildOnCVSS = 8
+    // Output directory where the report should be generated
+    outputDirectory = "build/reports/dependency-vulnerabilities"
+    // specify a list of known issues which contain false-positives to be suppressed
+    suppressionFiles = ["$projectDir/config/dependencycheck/dependency-check-suppression.xml"]
+}
