@@ -27,3 +27,10 @@ spring:
     hibernate:
       ddl-auto: none
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  security:
+    enabled: false

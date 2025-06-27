@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name="users")
+@Entity(name = "users")
 public class UserDO {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

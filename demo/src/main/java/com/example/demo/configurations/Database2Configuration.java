@@ -26,7 +26,7 @@ public class Database2Configuration {
     @ConfigurationProperties(prefix = "spring.datasource.database2")
     public DataSource dataSource() {
         return DataSourceBuilder.create()
-                .driverClassName("com.mysql.cj.jdbc.Driver")
+                .driverClassName("com.mysql.cj.jdbc.Driver")    
                 .build();
     }
 
