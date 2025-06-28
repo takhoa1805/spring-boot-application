@@ -40,7 +40,7 @@ public class MainController {
         logger.info("Hello world from get user by username api");
         logger.debug("username: {}", username);
         UserDO user = userService.getUserByUsername(username);
-        logger.info("User found: {}", user.getUsername());
+        logger.info("GithubUser found: {}", user.getUsername());
         return user;
     }
 
@@ -58,7 +58,7 @@ public class MainController {
         logger.info("Hello world from get user by username api");
         logger.debug("username: {}", username);
         UserDO user = userService.getUserByUsername(username);
-        logger.info("User found: {}", user.getUsername());
+        logger.info("GithubUser found: {}", user.getUsername());
         return user;
     }
 }
